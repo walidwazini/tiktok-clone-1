@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import type { AppProps } from "next/app";
 
 import "../styles/globals.css";
-import type { AppProps } from "next/app";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   // SSR : server side rendering
   const [isSSR, setIsSSR] = useState(true);
+  const googleToken: string = `${process.env.NEXT_PUBLIC_GOOGLE_API_TOKEN}`;
+
+  console.log(googleToken);
 
   useEffect(() => {
     setIsSSR(false);
@@ -16,7 +20,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   if (isSSR) return null;
 
   return (
-    <div>
+    <GoogleOAuthProvider
+      clientId={`${process.env.NEXT_PUBLIC_GOOGLE_API_TOKEN}`}
+    >
       <Navbar />
       <div className='flex gap-6 md:gap-20'>
         <div className='h-[92vh] overflow-hidden xl:overflow-auto'>
@@ -26,7 +32,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <Component {...pageProps} />;
         </div>
       </div>
-    </div>
+    </GoogleOAuthProvider>
   );
 };
 

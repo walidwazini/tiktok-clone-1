@@ -9,9 +9,6 @@ import Sidebar from "../components/Sidebar";
 const MyApp = ({ Component, pageProps }: AppProps) => {
   // SSR : server side rendering
   const [isSSR, setIsSSR] = useState(true);
-  const googleToken: string = `${process.env.NEXT_PUBLIC_GOOGLE_API_TOKEN}`;
-
-  console.log(googleToken);
 
   useEffect(() => {
     setIsSSR(false);

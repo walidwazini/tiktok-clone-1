@@ -5,6 +5,8 @@ import Link from "next/link";
 import { AiFillHome, AiOutlineMenu } from "react-icons/ai";
 import { ImCancelCircle } from "react-icons/im";
 import GoogleLogin from "react-google-login";
+
+import useAuthStore from "../store/authStore";
 import Discover from "./Discover";
 import SuggestedAcc from "./SuggestedAcc";
 import Footer from "./Footer";
@@ -12,7 +14,7 @@ import Footer from "./Footer";
 const Sidebar = () => {
   const [showSidebar, setShowSidebar] = useState(true);
 
-  const userProfile = false;
+  const { userProfile } = useAuthStore();
 
   const normalLink = `flex items-center gap-3 hover:bg-primary p-3 justify-center 
   xl:justify-start cursor-pointer font-semibold text-[#f51997] rounded `;

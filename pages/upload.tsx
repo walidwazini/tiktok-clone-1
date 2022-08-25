@@ -8,6 +8,7 @@ import axios from "axios";
 import useAuthStore from "../store/authStore";
 import { client } from "../utils/client";
 import { topics } from "../utils/constants";
+import { BASE_URL } from "../utils";
 
 const Upload = () => {
   const router = useRouter();
@@ -28,7 +29,7 @@ const Upload = () => {
     const fileTypes = ["video/mp4", "video/webm", "video/ogg"];
 
     if (fileTypes.includes(selectedFile.type)) {
-      // access into sanity client
+      // ? Access into sanity client
       client.assets
         .upload("file", selectedFile, {
           contentType: selectedFile.type,
@@ -65,7 +66,7 @@ const Upload = () => {
         },
         topic: category,
       };
-      await axios.post("http://localhost:3000/api/post", document);
+      await axios.post(`${BASE_URL}/api/post`, document);
 
       router.push("/");
     }

@@ -20,10 +20,12 @@ interface IProps {
 
 const Detail = ({ postDetails }: IProps) => {
   const { userProfile }: any = useAuthStore();
+  const router = useRouter();
   const [post, setPost] = useState(postDetails);
   const [playing, setPlaying] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(true);
-  const router = useRouter();
+  const [comment, setComment] = useState("");
+  const [isPostingComment, setIsPostingComment] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -52,6 +54,24 @@ const Detail = ({ postDetails }: IProps) => {
       });
       const data = res.data;
       setPost({ ...post, likes: data.likes });
+    }
+  };
+
+  const addComment = async (ev: any) => {
+    ev.preventDefault();
+
+    if (userProfile && comment) {
+      setIsPostingComment(true);
+
+      const { data } = await axios.put(`${BASE_URL}/api/post/${post._id}`, {
+        userId: userProfile._id,
+        comment,
+      });
+
+      setPost({ ...post, comments: data.comments });
+      console.log(data.comments);
+      setComment("");
+      setIsPostingComment(false);
     }
   };
 
@@ -105,7 +125,7 @@ const Detail = ({ postDetails }: IProps) => {
       </div>
       {/*   CAPTIONS/USER/COMMENT DIVISION   */}
       <div
-        className={`realtive w-[1000px] bg-indigo-800 md:w-[900px] lg:w-[700px]`}
+        className={`realtive w-[1000px] bg-inherit md:w-[900px] lg:w-[700px]`}
       >
         <div className={`lg:mt-20 mt-10`}>
           <div
@@ -153,7 +173,13 @@ const Detail = ({ postDetails }: IProps) => {
             )}
           </div>
           {/* COMMENTS  */}
-          <Comments />
+          <Comments
+            comment={comment}
+            allComments={post.comments}
+            setComment={setComment}
+            addComment={addComment}
+            isCommenting={isPostingComment}
+          />
         </div>
       </div>
     </div>

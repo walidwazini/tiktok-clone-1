@@ -22,18 +22,23 @@ const Sidebar = () => {
   const toggleHandler = () => setShowSidebar((state) => !state);
 
   return (
-    <div className='bg-indigo-700 h-full'>
+    <div className='bg-indigo-600 h-[100vh] flex flex-col'>
       <div
-        className='block xl:hidden mt-3 m-2 ml-4 text-xl'
+        className={`xl:hidden ${
+          !showSidebar ? "m-3" : "flex justify-center mt-3"
+        } text-xl text-white hover:cursor-pointer`}
         onClick={toggleHandler}
       >
         {showSidebar ? <ImCancelCircle /> : <AiOutlineMenu />}
       </div>
       {showSidebar && (
-        <div className='xl:w-400 w-20 flex flex-col justify-start mb-10 border-r-2 border-gray-100 xl:border-0 p-3'>
+        <div className='xl:w-400 w-20 flex flex-col justify-start mb-10 xl:border-0 p-3'>
           <div className='xl:border-b-2 border-gray-200 xl:pb-4'>
             <Link href={"/"}>
-              <div className={normalLink}>
+              <div
+                className={`flex items-center gap-3 hover:bg-primary p-3 justify-center 
+  xl:justify-start cursor-pointer font-semibold hover:text-[#f51997] text-white rounded `}
+              >
                 <p className='text-2xl'>
                   <AiFillHome />
                 </p>
@@ -43,7 +48,7 @@ const Sidebar = () => {
           </div>
           {!userProfile && (
             <div className='px-2 py-4 hidden xl:block'>
-              <p className='text-gray-400'>Log in to like and comment videos</p>
+              <p className='text-white'>Log in to like and comment videos</p>
               <div>
                 <GoogleLogin
                   clientId=''

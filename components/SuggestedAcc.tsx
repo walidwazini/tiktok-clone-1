@@ -16,16 +16,16 @@ const SuggestedAcc = () => {
 
   return (
     <div className='xl:border-b-2 border-gray-200 pb-4'>
-      <p className={`text-gray-500 font-semidbold m-3 mt-4 hidden xl:block`}>
+      <p className={`text-white font-semidbold m-3 mt-4 hidden xl:block`}>
         Suggested Account
       </p>
-      <div>
+      <div className=''>
         {allUsers.slice(0, 2).map((user: IUser) => (
           <Link href={`/profile/${user._id}`} key={user._id}>
             <div
-              className={`flex gap-3 transition duration-300 hover:bg-primary p-2 cursor-pointer rounded`}
+              className={`flex gap-3 mb-2 transition duration-300 hover:bg-indigo-800 p-2 cursor-pointer rounded`}
             >
-              <div className={`w-8 h-8`}>
+              <div className={`w-8 h-8 ml-1 lg:p-0`}>
                 <Image
                   src={user.image}
                   height={34}

@@ -22,7 +22,7 @@ const Sidebar = () => {
   const toggleHandler = () => setShowSidebar((state) => !state);
 
   return (
-    <div className='bg-indigo-600 h-[100vh] flex flex-col'>
+    <div className='bg-indigo-600 h-[130vh] flex flex-col'>
       <div
         className={`xl:hidden ${
           !showSidebar ? "m-3" : "flex justify-center mt-3"

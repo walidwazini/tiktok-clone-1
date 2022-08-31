@@ -125,7 +125,7 @@ const Detail = ({ postDetails }: IProps) => {
       </div>
       {/*   CAPTIONS/USER/COMMENT DIVISION   */}
       <div
-        className={`realtive w-[1000px] bg-inherit md:w-[900px] lg:w-[700px]`}
+        className={`realtive w-[1000px] bg-indigo-600 md:w-[900px] lg:w-[700px]`}
       >
         <div className={`lg:mt-20 mt-10`}>
           <div

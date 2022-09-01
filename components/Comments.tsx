@@ -81,7 +81,7 @@ const Comments = ({
             </>
           ))
         ) : (
-          <NoResult comment video={false} text='Be the first to comment.' />
+          <NoResult isCommentType text='Be the first to comment.' />
         )}
       </div>
       {/* {userProfile && ( */}

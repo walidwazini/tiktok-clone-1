@@ -4,16 +4,20 @@ import { BiCommentX } from "react-icons/bi";
 
 interface IProps {
   text: string;
-  video: boolean;
-  comment: boolean;
+  isVideoType?: boolean;
+  isCommentType?: boolean;
 }
 
-const NoResult = ({ text, video, comment }: IProps) => {
+const NoResult = ({
+  text,
+  isVideoType = false,
+  isCommentType = false,
+}: IProps) => {
   return (
     <div className={`flex flex-col justify-center items-center h-full`}>
       <p className='text-6xl'>
-        {video && <MdOutlineVideocamOff />}
-        {comment && <BiCommentX />}
+        {isVideoType && <MdOutlineVideocamOff />}
+        {isCommentType && <BiCommentX />}
       </p>
       <p className='text-xl text-center'>{text}</p>
     </div>
